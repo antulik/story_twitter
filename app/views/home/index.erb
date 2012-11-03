@@ -1,0 +1,9 @@
+<% if logged_in? %>
+    <%= current_user.username %>
+    <%= link_to 'add twitter', '/auth/twitter' %>
+
+    <p><%= current_user.twitter_secret %></p>
+<% else %>
+    Please login
+<% end %>
+<%= link_to "login to story", '/auth/story' %>
