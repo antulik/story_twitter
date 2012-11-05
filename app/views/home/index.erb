@@ -3,7 +3,10 @@
     <%= link_to 'add twitter', '/auth/twitter' %>
 
     <p><%= current_user.twitter_secret %></p>
+    <%= link_to "Logout", logout_path %>
+
 <% else %>
     Please login
 <% end %>
 <%= link_to "login to story", '/auth/story' %>
+

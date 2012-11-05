@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
     elsif params[:provider] == 'twitter'
       if logged_in?
-        current_user.twitter_key = auth_hash['credentials']['token']
+        current_user.twitter_key    = auth_hash['credentials']['token']
         current_user.twitter_secret = auth_hash['credentials']['secret']
         current_user.save!
       end
@@ -18,6 +18,11 @@ class SessionsController < ApplicationController
 
     #self.current_user = @user
     redirect_to '/'
+  end
+
+  def destroy
+    logout
+    redirect_to( :root, :notice => 'Logged out!')
   end
 
   protected
