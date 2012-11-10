@@ -1,3 +1,10 @@
+TWITTER_KEY    = "A5U7NNrj1JnJoL9sBw"
+TWITTER_SECRET = "2MYIHAvKnliYH3RaP16WOo6V4o6I5G6kdqKfbtV7b4g"
+
+DOORKEEPER_APP_ID     = '12cf47c0c166b39af3501fc233625288f61e427e2a8b99088a653d506533f411'
+DOORKEEPER_APP_SECRET = '6c8c335a843e41e2a6a82dbeff53ae8c025d3b43fbc6f12ee44fe27ee454be51'
+DOORKEEPER_APP_URL    = 'http://localhost:3000'
+
 SyncTwitter::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 

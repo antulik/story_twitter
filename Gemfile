@@ -12,9 +12,10 @@ gem 'sorcery'
 gem 'omniauth'
 gem 'omniauth-oauth2'
 gem 'omniauth-twitter'
+gem 'quiet_assets', :group => :development
 
 gem 'twitter'
-
+gem 'thin'
 
 # Gems used only for assets and not required
 # in production environments by default.

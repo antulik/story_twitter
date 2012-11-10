@@ -3,18 +3,20 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   def create_twitter_home_timeline
-    TwitterSynchronizer.new(self).create_twitter_home_timeline
+    sync.create_twitter_home_timeline
   end
 
   def sync_twitter_home_timeline
-    calendar = calendars.where(:external_type => 'home_timeline').first
-
-    if calendar.nil?
-      calendar = create_twitter_home_timeline
-    end
-
-    calendar.sync_events
+    calendar = sync.create_twitter_home_timeline
+    sync.sync_events(calendar)
   end
 
+  def access_token
+    StoryLine::Token.new(story_token)
+  end
+
+  def sync
+    @sync ||= TwitterSynchronizer.new(self)
+  end
 
 end

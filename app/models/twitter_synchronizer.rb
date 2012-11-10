@@ -2,20 +2,31 @@ class TwitterSynchronizer
 
   attr_accessor :user
 
+  def set_headers
+    Calendar.headers['authorization'] = 'Bearer ' + user.story_token
+    Event.headers['authorization']    = 'Bearer ' + user.story_token
+  end
+
   def initialize user
     self.user = user
   end
 
   def create_twitter_home_timeline
-    calendar = user.calendars.where(:external_type => 'home_timeline').first
+    set_headers
+
+    calendars = Calendar.all
+    calendar  = calendars.detect { |c| c.external_type == 'home_timeline' }
+
     if calendar.nil?
-      user.calendars.create!({
+      Calendar.create({
           summary:           "Twitter home timeline",
           synchronizer_name: self.class.name,
           external_type:     'home_timeline',
           external_id:       '',
           color:             "#33ccff"
       })
+    else
+      calendar
     end
   end
 
@@ -24,28 +35,23 @@ class TwitterSynchronizer
     #start_date = options[:start] || end_date - 6.month
 
     sync_home_timeline(calendar)
+
   end
 
-  protected
+  #protected
 
   def sync_home_timeline calendar
-    home_timeline.each do |tweet|
-      event = calendar.events.where(:external_id => tweet.id.to_s).first
-
-      attributes = {
+    tweets = home_timeline.map do |tweet|
+      {
           :external_id => tweet.id.to_s,
           :summary     => tweet.text,
           :description => "",
           :start       => tweet.created_at,
           :raw_data    => tweet.to_hash
       }
-      if event.nil?
-        calendar.events.create(attributes)
-      else
-        event.update_attributes(attributes)
-      end
-
     end
+
+    Event.post(:import, {:calendar_id => calendar.id}, tweets.to_json)
   end
 
   def home_timeline
@@ -65,13 +71,9 @@ class TwitterSynchronizer
 
   def client
     @client ||= Twitter::Client.new(
-        :oauth_token        => provider.token,
-        :oauth_token_secret => provider.secret
+        :oauth_token        => user.twitter_token,
+        :oauth_token_secret => user.twitter_secret
     )
-  end
-
-  def provider
-    user.providers.twitter
   end
 
 end

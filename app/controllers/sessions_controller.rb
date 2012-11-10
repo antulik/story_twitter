@@ -3,13 +3,16 @@ class SessionsController < ApplicationController
 
     if params[:provider] == 'story'
       @user = User.where(:username => auth_hash.uid.to_s).first_or_initialize
+
+      @user.story_token = auth_hash['credentials']['token']
+
       @user.save!
 
       auto_login(@user)
 
     elsif params[:provider] == 'twitter'
       if logged_in?
-        current_user.twitter_key    = auth_hash['credentials']['token']
+        current_user.twitter_token  = auth_hash['credentials']['token']
         current_user.twitter_secret = auth_hash['credentials']['secret']
         current_user.save!
       end
@@ -22,7 +25,7 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to( :root, :notice => 'Logged out!')
+    redirect_to(:root, :notice => 'Logged out!')
   end
 
   protected
