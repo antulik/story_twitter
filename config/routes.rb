@@ -2,6 +2,7 @@ SyncTwitter::Application.routes.draw do
 
   match '/auth/:provider/callback', to: 'sessions#create'
   match 'logout' => 'sessions#destroy', :as => :logout
+  match '/settings' => 'home#settings'
 
 
   # The priority is based upon order of creation:
