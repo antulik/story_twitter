@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(:version => 20121102084109) do
 
   create_table "users", :force => true do |t|
     t.string   "username",       :null => false
+    t.integer  "story_user_id"
     t.string   "story_token"
     t.string   "twitter_token"
     t.string   "twitter_secret"

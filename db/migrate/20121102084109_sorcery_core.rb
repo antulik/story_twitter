@@ -6,6 +6,7 @@ class SorceryCore < ActiveRecord::Migration
       #t.string :crypted_password, :default => nil
       #t.string :salt,             :default => nil
 
+      t.integer :story_user_id
       t.string :story_token
 
       t.string :twitter_token
