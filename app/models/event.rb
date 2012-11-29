@@ -1,5 +1,5 @@
 class Event < ActiveResource::Base
-  self.site = "http://localhost:3000/api/v1"
+  self.site = "#{DOORKEEPER_APP_URL}/api/v1"
 
   self.prefix = "/api/v1/calendars/:calendar_id/"
 
