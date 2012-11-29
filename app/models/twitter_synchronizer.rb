@@ -46,6 +46,7 @@ class TwitterSynchronizer
           :external_id => tweet.id.to_s,
           :summary     => tweet.text,
           :description => "",
+          :size        => tweet.retweet_count,
           :start       => tweet.created_at,
           :raw_data    => tweet.to_hash
       }
