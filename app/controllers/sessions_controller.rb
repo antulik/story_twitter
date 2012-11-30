@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
       end
 
       begin
-        @user.sync_twitter_home_timeline
+        current_user.sync_twitter_home_timeline
       rescue Exception
       end
 
