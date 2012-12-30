@@ -1,12 +1,20 @@
+<%= link_to "Addons list", addons_url %>
+
 <% if logged_in? %>
-    <%= current_user.username %>
-    <%= link_to 'add twitter', '/auth/twitter' %>
+    <p>
+      Username:<%= current_user.username %>
+    </p>
 
-    <p><%= current_user.twitter_secret %></p>
+    <p>Twitter key (first 20 chars): <%= current_user.twitter_secret.first(20) %></p>
+
+    <p>
+      <%= link_to 'add twitter and fetch tweets', '/auth/twitter' %>
+    </p>
+
     <%= link_to "Logout", logout_path %>
-
 <% else %>
     Please login
 <% end %>
+
 <%= link_to "login to story", '/auth/story' %>
 

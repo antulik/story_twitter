@@ -1,16 +1,15 @@
 class HomeController < ApplicationController
 
   def index
-
   end
 
-  def settings
-    if logged_in? && current_user.story_user_id != params[:user_id]
+  def direct_login
+    if logged_in? && current_user.story_user_id != params[:user_id].to_i
       logout
     end
 
     if logged_in?
-      render :index
+      redirect_to :root
     else
       redirect_to '/auth/story'
     end
