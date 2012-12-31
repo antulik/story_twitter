@@ -31,6 +31,9 @@ end
 
 gem 'jquery-rails'
 
+#gem 'story_gem', :path => "/Users/anton/Dropbox/projects/story_gem"
+gem 'story_gem', :git => 'git://github.com/antulik/story_gem.git'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

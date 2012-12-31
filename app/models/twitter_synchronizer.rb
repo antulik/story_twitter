@@ -3,8 +3,8 @@ class TwitterSynchronizer
   attr_accessor :user
 
   def set_headers
-    Calendar.headers['authorization'] = 'Bearer ' + user.story_token
-    Event.headers['authorization']    = 'Bearer ' + user.story_token
+    StoryGem::Calendar.headers['authorization'] = 'Bearer ' + user.story_token
+    StoryGem::Event.headers['authorization']    = 'Bearer ' + user.story_token
   end
 
   def initialize user
@@ -14,11 +14,11 @@ class TwitterSynchronizer
   def create_twitter_home_timeline
     set_headers
 
-    calendars = Calendar.all
+    calendars = StoryGem::Calendar.all
     calendar  = calendars.detect { |c| c.external_type == 'home_timeline' }
 
     if calendar.nil?
-      Calendar.create({
+      StoryGem::Calendar.create({
           summary:           "Twitter home timeline",
           synchronizer_name: self.class.name,
           external_type:     'home_timeline',
@@ -52,7 +52,7 @@ class TwitterSynchronizer
       }
     end
 
-    Event.post(:import, {:calendar_id => calendar.id}, tweets.to_json)
+    StoryGem::Event.post(:import, {:calendar_id => calendar.id}, tweets.to_json)
   end
 
   def home_timeline
