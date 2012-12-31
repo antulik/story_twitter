@@ -47,10 +47,11 @@ development:
 #  username: sync_twitter
 #  password:
 #
-#production:
-#  adapter: postgresql
-#  encoding: unicode
-#  database: sync_twitter_production
-#  pool: 5
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: sync_twitter_development
+  pool: 5
+  host: localhost
 #  username: sync_twitter
 #  password:
