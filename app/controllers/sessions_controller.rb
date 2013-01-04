@@ -11,7 +11,6 @@ class SessionsController < ApplicationController
 
       auto_login(@user)
 
-
     elsif params[:provider] == 'twitter'
       if logged_in?
         current_user.twitter_token  = auth_hash['credentials']['token']

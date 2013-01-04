@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/antulik/story_gem.git
-  revision: 9daa7bd4081c6ceac0daaac07d7ee1657e5f9a40
+  revision: 1ea717c13e428b4db78b39160bcd4d7e50f5a805
   specs:
-    story_gem (0.0.1)
+    story_gem (0.0.2)
       activeresource (= 3.2.8)
       omniauth
       omniauth-oauth2
