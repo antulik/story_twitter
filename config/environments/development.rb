@@ -5,6 +5,8 @@ DOORKEEPER_APP_ID     = 'bb25826697c95462523ec73dd1674006f2f644aefb0f7f6cc8bbaee
 DOORKEEPER_APP_SECRET = 'd65c69dc1b3a7b6f785c8e15718e090d78f25968faefe3741acf108bfeaec939'
 DOORKEEPER_APP_URL    = 'http://localhost:3000'
 
+APPLICATION_SECRET_TOKEN = 'secret_token' * 5
+
 SyncTwitter::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
