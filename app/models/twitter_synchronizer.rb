@@ -41,12 +41,12 @@ class TwitterSynchronizer
     tweets = home_timeline.map do |tweet|
 
       hs = if tweet.retweeted
-        retweeted_status = tweet.retweeted_status
+        rt = tweet.retweeted_status
         {
-            :author_name         => retweeted_status.user.name,
-            :author_username     => retweeted_status.user.screen_name,
-            :author_thumbnail    => retweeted_status.user.profile_image_url,
-            :description         => retweeted_status.text,
+            :author_name         => rt.user.name,
+            :author_username     => rt.user.screen_name,
+            :author_thumbnail    => rt.user.profile_image_url,
+            :description         => rt.text,
 
             :posted_by_name      => tweet.user.name,
             :posted_by_username  => tweet.user.screen_name,
@@ -63,7 +63,7 @@ class TwitterSynchronizer
       end
 
       {
-          :external_id => tweet.id_str,
+          :external_id => tweet.id.to_s,
           :size        => tweet.retweet_count,
           :start       => tweet.created_at,
 
