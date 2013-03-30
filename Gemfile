@@ -17,6 +17,13 @@ gem 'quiet_assets', :group => :development
 gem 'twitter'
 gem 'thin'
 
+gem 'dotenv-rails'
+gem 'whenever', :require => false
+
+group :development do
+  gem 'antulik-recipes', :git => 'git@bitbucket.org:antulik/antulik-recipes.git', :branch => 'master'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
