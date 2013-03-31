@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git@bitbucket.org:antulik/antulik-recipes.git
-  revision: 71aba5b381e23c2042da5473529a644a704b6460
+  revision: d8fb4910c93706875dbccf5107f71e07365a8a6d
   branch: master
   specs:
     antulik-recipes (0.0.2)
